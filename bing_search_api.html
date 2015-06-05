@@ -1,0 +1,104 @@
+<html>
+ <head>
+  <title>Bing Search API</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <script>
+     $(function() {
+       $( "#accordion" ).accordion({
+         collapsible: true
+       });
+     });
+  </script>
+ </head>
+ <body>
+  <h1 style="font-family:Arial;">Bing Search API</h1>
+  <form method="POST" action="bing_search_api.php">
+    <div id="accordion" style="font-family:Arial;font-size:18;">
+      <h3>Parameters</h3>
+      <div style="line-height:0.5;">
+         <label for="service_op">Search</label>
+         <input name="service_op" type="radio" value="Web" CHECKED /> Web
+         <input name="service_op" type="radio" value="Image" /> Image
+         <br /><br />
+   
+         <label for="Top" style="cursor:pointer;" title="Specifies the number of results to return. The default is 50 for web, image, and video searches, 15 for news.">Top</label>
+         <input name="Top" type="number" size="5" value="5" />
+         <br /><br />
+         
+         <label for="Market" style="cursor:pointer;" title="If the parameter is not specified, the API tries to determine an applicable market by using the IP address of the request, cookies, and other factors.">Market</label>
+         <input name="Market" type="radio" value="en-US" /> en-US 
+         <input name="Market" type="radio" value="zh-CN" CHECKED /> zh-CN 
+         <input name="Market" type="radio" value="zh-TW" /> zh-TW
+         <br /><br /> 
+
+         <label for="Latitude" style="cursor:pointer;" title="A north/south coordinate value. Valid input values are: –90 to 90. Default: (none)">Latitude</label>
+         <input name="Latitude" type="number" size="10" value="" />
+         <br /><br /> 
+         
+         <label for="Longitude" style="cursor:pointer;" title="An east/west coordinate value. Valid input values are: –180 to 180. Default: (none)">Longitude</label>
+         <input name="Longitude" type="number" size="10" value="" />
+         <br /><br /> 
+         
+         <label for="Adult" style="cursor:pointer;" title="Used for filtering sexually explicit content. If you don’t specify this parameter, the API will use the default level for the specified market.">Adult</label>
+         <input name="Adult" type="radio" value="" CHECKED /> Default 
+         <input name="Adult" type="radio" value="Off" /> Off 
+         <input name="Adult" type="radio" value="Moderate" /> Moderate 
+         <input name="Adult" type="radio" value="Strict" /> Strict
+         <br /><br />
+         
+         <lable for="Site" style="cursor:pointer;" title="Narrow search result down to a particular site.">Site</lable>
+         <input name="Site" type="text" value="" size="60" />
+         <br /><br />
+
+         <lable for="format_results" style="cursor:pointer;" title="Parse and format search results; otherwise, output the returned data stream.">Format Results</lable>
+         <input name="format_results" type="checkbox" value="FormatResults" CHECKED />
+      </div>
+
+      <h3>More...</h3>
+      <div style="line-height:0.5;">
+         <label for="Skip" style="cursor:pointer;" title="Specifies the offset requested for the starting point of returned results. The default is zero.">Skip</label>
+         <input name="Skip" type="number" size="5" value="" />
+         <br /><br />
+         
+         <label for="Format" style="cursor:pointer;" title="Specifies the format of the OData response. Current options are Atom (for XML) or JSON. Default: Atom.">Format</label>
+         <input name="Format" type="text" size="10" value="JSON" DISABLED />
+         <br /><br />
+
+         <label for="Options_DisableLocationDetection" style="cursor:pointer;" title="Prevents Bing from inferring location from the terms of a query.">Disable Location Detection</label>
+         <input name="Options_DisableLocationDetection" type="checkbox" value="DisableLocationDetection" />
+         <br /><br />
+         
+         <label for="Options_EnableHighlighting" style="cursor:pointer;" title="Causes Bing to insert special characters in the results that  identify the beginning and the end of a query term that appears in results. The characters are E000 and E001, respectively.  Although you can use this option with any service operation, the special characters are inserted only for Web and News results.">Enable Highlighting</label>
+         <input name="Options_EnableHighlighting" type="checkbox" value="EnableHighlighting" />
+         <br /><br />
+      
+         <label for="WebSearchOptions_DisableHostCollapsing" style="cursor:pointer;" title="Prevents Bing from suppressing results from the same top-level URL for a request.">DisableHostCollapsing</label>
+         <input name="WebSearchOptions_DisableHostCollapsing" type="checkbox" value="DisableHostCollapsing" />
+         <br /><br />
+         
+         <label for="WebSearchOptions_DisableQueryAlterations" style="cursor:pointer;" title="Prevents Bing from altering the query string. Such alteration may have been done to correct apparent spelling error in the original query string.">DisableQueryAlterations</label>
+         <input name="WebSearchOptions_DisableQueryAlterations" type="checkbox" value="DisableQueryAlterations" />
+         <br /><br />
+      
+         <label for="WebFileType" style="cursor:pointer;" title="A file name extension that specifies the type of file to return in a result set. Default: (none). If you don’t specify an extension, Bing gets any document relevant to the query.">Web File Type</label>
+         <input name="WebFileType" type="text" size="60" value="" DISABLED />
+         <br /><br /> 
+      
+         <label for="ImageFilters" style="cursor:pointer;" title="An array of strings that filter the response returned by the API based on any combination of size, aspect, color, style, and face. Default: (none)">Image Filters</label>
+         <input name="ImageFilters" type="text" size="60" value="" DISABLED />
+      </div>
+   </div>
+
+   <font face="Arial">
+   <label for="query"><h2>Query</h2></label>
+   <input name="query" type="text" size="60" maxlength="60" value="" /><br /><br />
+   <input name="bt_search" type="submit" value="Search" />
+  </form>
+  <h2>Results</h2>
+ {RESULTS}
+   </font>
+ </body>
+</html>
